@@ -16,6 +16,33 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        public void Add(Car car)
+        {
+            if ((car.Description.Length >= 2) && (car.DailyPrice > 0))
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("The car could not be added. Registration conditions;\n" +
+                    "-The car description must contain at least two characters\n" +
+                    "-The daily price of the car must be greater than zero");
+            }
+        }
+        public void Update(Car car)
+        {
+            if ((car.Description.Length >= 2) && (car.DailyPrice > 0))
+            {
+                _carDal.Update(car);
+            }
+            else
+            {
+                Console.WriteLine("The car could not be added. Registration conditions;\n" +
+                    "-The car description must contain at least two characters.\n" +
+                    "-The daily price of the car must be greater than zero.");
+            }
+        }
+
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
@@ -23,17 +50,19 @@ namespace Business.Concrete
 
         public List<Car> GetById(int carId)
         {
-            return _carDal.GetById(carId);
+            return _carDal.GetAll(c => c.CarId == carId);
         }
 
-        public List<Car> GetByBrandId(int brandId)
+        public List<Car> GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetByBrandId(brandId);
+            return _carDal.GetAll(c => c.BrandId== brandId);
         }
 
-        public List<Car> GetByColorId(int colorId)
+        public List<Car> GetCarsByColorId(int colorId)
         {
-            return _carDal.GetByColorId(colorId);
+            return _carDal.GetAll(c => c.ColorId == colorId);
         }
+
+        
     }
 }
