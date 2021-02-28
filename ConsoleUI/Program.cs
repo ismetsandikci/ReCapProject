@@ -12,6 +12,46 @@ namespace ConsoleUI
         {
             //InMemoryCarDalTest();
 
+            //Car, Color, Brand -> CRUD, GetAll, GetCarDetails, GetById, GetCarsByBrandId, GetCarsByColorId examples
+            //CarColorBrandExamples();
+
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(new User { FirstName = "User1FN", LastName = "User1LN", Email = "user1@user.com", Password = "1234" });
+            userManager.Add(new User { FirstName = "User2FN", LastName = "User2LN", Email = "user2@user.com", Password = "4321" });
+            userManager.Add(new User { FirstName = "User3FN", LastName = "User3LN", Email = "user3@user.com", Password = "2143" });
+            Console.WriteLine("---User List");
+            var resultUsersList = userManager.GetAll();
+            if (resultUsersList.Success)
+            {
+                foreach (var user in resultUsersList.Data)
+                {
+                    Console.WriteLine("FirstName={0}, LastName={1}, Email={2}, Password={3}", user.FirstName, user.LastName, user.Email, user.Password);
+                }
+            }
+
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer { UserId = 1, CompanyName = "Company1" });
+            customerManager.Add(new Customer { UserId = 2, CompanyName = "Company2" });
+            customerManager.Add(new Customer { UserId = 3, CompanyName = "Company3" });
+            Console.WriteLine("\n---Customer List");
+            var resultCustomersList = customerManager.GetCustomerDetails();
+            if (resultCustomersList.Success)
+            {
+                foreach (var customer in resultCustomersList.Data)
+                {
+                    Console.WriteLine("FirstName={0}, LastName={1}, Email={2}, Password={3}, CompanyName={4}", customer.FirstName, customer.LastName, customer.Email, customer.Password, customer.CompanyName);
+                }
+            }
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Console.WriteLine("isRented1: " + rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 2, 20), ReturnDate = new DateTime(2021, 2, 25) }).Message);
+            Console.WriteLine("isRented2: " + rentalManager.Add(new Rental { CarId = 2, CustomerId = 2, RentDate = new DateTime(2021, 2, 21) }).Message);
+            Console.WriteLine("isRented3: " + rentalManager.Add(new Rental { CarId = 2, CustomerId = 3, RentDate = new DateTime(2021, 2, 22) }).Message);
+
+        }
+
+        private static void CarColorBrandExamples()
+        {
             CarManager carManager1 = new CarManager(new EfCarDal());
             ColorManager colorManager1 = new ColorManager(new EfColorDal());
             BrandManager brandManager1 = new BrandManager(new EfBrandDal());
@@ -46,7 +86,7 @@ namespace ConsoleUI
             var resultCarGetById = carManager1.GetById(6).Data;
             Console.WriteLine("CarId:{0}, BrandId:{1}, ColorId:{2}, ModelName:{3}, ModelYear:{4}, DailyPrice:{5}, Description:{6}",
                     resultCarGetById.CarId, resultCarGetById.BrandId, resultCarGetById.ColorId, resultCarGetById.ModelName, resultCarGetById.ModelYear, resultCarGetById.DailyPrice, resultCarGetById.Description);
-            
+
             Console.WriteLine("\n---GetCarsByBrandId(2)");
             var resultGetCarsByBrandId = carManager1.GetCarsByBrandId(2).Data;
             foreach (var car in resultGetCarsByBrandId)
@@ -72,7 +112,7 @@ namespace ConsoleUI
                 Description = "Test Description"
             };
             string isCarAdded = carManager1.Add(car1).Message;
-            Console.WriteLine("\nisCarAdded:"+isCarAdded);
+            Console.WriteLine("\nisCarAdded:" + isCarAdded);
 
             Console.WriteLine("\n---Car GetById(7)");
             var resultGetCarById = carManager1.GetById(7).Data;
@@ -106,7 +146,7 @@ namespace ConsoleUI
             var resultGetCarById2 = carManager1.GetById(7).Data;
             Console.WriteLine("CarId:{0}, BrandId:{1}, ColorId:{2}, ModelName:{3}, ModelYear:{4}, DailyPrice:{5}, Description:{6}",
                     resultGetCarById2.CarId, resultGetCarById2.BrandId, resultGetCarById2.ColorId, resultGetCarById2.ModelName, resultGetCarById2.ModelYear, resultGetCarById2.DailyPrice, resultGetCarById2.Description);
-            
+
             color1.ColorName = "Gray";
             string isColorUpdated = colorManager1.Update(color1).Message;
             Console.WriteLine("\nisColorUpdated:" + isColorUpdated);
@@ -134,8 +174,7 @@ namespace ConsoleUI
 
 
             Console.WriteLine("\n---Car Not Valid Adding Error Message");
-            Console.WriteLine(carManager1.Add(new Car() { CarId = 8, BrandId = 1, ColorId = 3, ModelName = "Test Model 2", ModelYear = 2018, DailyPrice = 800, Description = "T" }).Message); 
-
+            Console.WriteLine(carManager1.Add(new Car() { CarId = 8, BrandId = 1, ColorId = 3, ModelName = "Test Model 2", ModelYear = 2018, DailyPrice = 800, Description = "T" }).Message);
         }
 
         private static void InMemoryCarDalTest()
