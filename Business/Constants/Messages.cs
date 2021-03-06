@@ -40,7 +40,11 @@ namespace Business.Constants
         public static string RentalDeleted = "Rental Deleted";
         public static string RentalReturnDateError = "The car cannot be rented because it is not returned";
         public static string RentalGetAll = "RentalGetAll"; 
-        public static string GetRentalByRentalId = "GetRentalByRentalId"; 
+        public static string GetRentalByRentalId = "GetRentalByRentalId";
 
+        public static string CarImageLimitExceeded = "Bir arabanın 5'dan fazla resmi olamaz.";
+        public static string CarImageAdded = "Araba resmi eklendi";
+        public static string CarImageDeleted = "Araba resmi silindi";
+        public static string CarImageUpdated = "Araba resmi güncellendi";
     }
 }

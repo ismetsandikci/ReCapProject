@@ -19,7 +19,6 @@ namespace Core.DataAccess.EntityFramework
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
-                //Console.WriteLine("\n{0} Added", entity.GetType().Name);
             }
         }
         public void Update(TEntity entity)
@@ -29,7 +28,6 @@ namespace Core.DataAccess.EntityFramework
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;
                 context.SaveChanges();
-                //Console.WriteLine("\n{0} Updated.", entity.GetType().Name);
             }
         }
 
@@ -40,7 +38,6 @@ namespace Core.DataAccess.EntityFramework
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
                 context.SaveChanges();
-                //Console.WriteLine("\n{0} Deleted.", entity.GetType().Name);
             }
         }
 
