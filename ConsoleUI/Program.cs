@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -15,6 +16,7 @@ namespace ConsoleUI
             //Car, Color, Brand -> CRUD, GetAll, GetCarDetails, GetById, GetCarsByBrandId, GetCarsByColorId examples
             //CarColorBrandExamples();
 
+            /*
             UserManager userManager = new UserManager(new EfUserDal());
             userManager.Add(new User { FirstName = "User1FN", LastName = "User1LN", Email = "user1@user.com", Password = "1234" });
             userManager.Add(new User { FirstName = "User2FN", LastName = "User2LN", Email = "user2@user.com", Password = "4321" });
@@ -28,6 +30,7 @@ namespace ConsoleUI
                     Console.WriteLine("FirstName={0}, LastName={1}, Email={2}, Password={3}", user.FirstName, user.LastName, user.Email, user.Password);
                 }
             }
+            */
 
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
             customerManager.Add(new Customer { UserId = 1, CompanyName = "Company1" });
@@ -39,7 +42,7 @@ namespace ConsoleUI
             {
                 foreach (var customer in resultCustomersList.Data)
                 {
-                    Console.WriteLine("FirstName={0}, LastName={1}, Email={2}, Password={3}, CompanyName={4}", customer.FirstName, customer.LastName, customer.Email, customer.Password, customer.CompanyName);
+                    Console.WriteLine("FirstName={0}, LastName={1}, Email={2}, Password={3}, CompanyName={4}", customer.FirstName, customer.LastName, customer.Email, customer.CompanyName);
                 }
             }
 

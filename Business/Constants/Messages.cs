@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -24,7 +25,6 @@ namespace Business.Constants
         public static string UserAdded = "User Added";
         public static string UserUpdated = "User Updated";
         public static string UserDeleted = "User Deleted";
-        public static string UserEmailWrong = "Email format is wrong!";
         public static string UsersGetAll = "UsersGetAll"; 
         public static string GetUserByUserId = "GetUserByUserId";
 
@@ -46,5 +46,15 @@ namespace Business.Constants
         public static string CarImageAdded = "Araba resmi eklendi";
         public static string CarImageDeleted = "Araba resmi silindi";
         public static string CarImageUpdated = "Araba resmi güncellendi";
+
+        public static string AuthorizationDenied = "Yetkiniz yok";
+
+        public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
+        public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccessfulLogin = "Sisteme giriş başarılı";
+        public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
+        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+
     }
 }
