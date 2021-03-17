@@ -95,14 +95,14 @@ namespace ConsoleUI
             foreach (var car in resultGetCarsByBrandId)
             {
                 Console.WriteLine("CarId:{0}, BrandId:{1}, ColorId:{2}, ModelName:{3}, ModelYear:{4}, DailyPrice:{5}, Description:{6}",
-                    car.CarId, car.BrandId, car.ColorId, car.ModelName, car.ModelYear, car.DailyPrice, car.Description);
+                    car.CarId, car.BrandName, car.ColorName, car.ModelName, car.ModelYear, car.DailyPrice, car.Description);
             }
             Console.WriteLine("\n---GetCarsByColorId(3)");
             var resultGetCarsByColorId = carManager1.GetCarsByColorId(3).Data;
             foreach (var car in resultGetCarsByColorId)
             {
                 Console.WriteLine("CarId:{0}, BrandId:{1}, ColorId:{2}, ModelName:{3}, ModelYear:{4}, DailyPrice:{5}, Description:{6}",
-                    car.CarId, car.BrandId, car.ColorId, car.ModelName, car.ModelYear, car.DailyPrice, car.Description);
+                    car.CarId, car.BrandName, car.ColorName, car.ModelName, car.ModelYear, car.DailyPrice, car.Description);
             }
 
             Car car1 = new Car()

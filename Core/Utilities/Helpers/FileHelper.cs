@@ -9,6 +9,9 @@ namespace Core.Utilities.Helpers
 {
     public class FileHelper
     {
+
+        static string imagePath = null;
+
         public static string Add(IFormFile file)
         {
             var sourcepath = Path.GetTempFileName();
@@ -21,7 +24,7 @@ namespace Core.Utilities.Helpers
             }
             var result = CreateNewFilePath(file);
             File.Move(sourcepath, result);
-            return result;
+            return imagePath;
         }
         public static IResult Delete(string path)
         {
@@ -58,6 +61,7 @@ namespace Core.Utilities.Helpers
             var newPath = Guid.NewGuid().ToString() + fileExtension;
 
             string result = $@"{path}\{newPath}";
+            imagePath = @"\Images\"+ newPath;
             return result;
         }
     }

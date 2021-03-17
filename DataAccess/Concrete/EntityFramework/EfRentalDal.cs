@@ -41,7 +41,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
                                  UserName = u.FirstName + " " + u.LastName,
-                                 CustomerName = u.FirstName + " " + u.LastName + "/" + co.CompanyName,
+                                 CustomerName = co.CompanyName,
                                  RentDate = ra.RentDate,
                                  ReturnDate = ra.ReturnDate
                              };
