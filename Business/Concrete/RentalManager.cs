@@ -25,10 +25,11 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            if (_rentalDal.CheckCarStatus(rental.CarId))
+            if (!_rentalDal.CheckCarStatus(rental.CarId, rental.RentDate, rental.ReturnDate))
             {
                 return new ErrorResult(Messages.RentalReturnDateError);
             }
+
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
@@ -42,7 +43,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
-            if (_rentalDal.CheckCarStatus(rental.CarId))
+            if (_rentalDal.CheckCarStatus(rental.CarId,rental.RentDate,rental.ReturnDate))
             {
                 return new ErrorResult(Messages.RentalReturnDateError);
             }
@@ -59,13 +60,20 @@ namespace Business.Concrete
         public IDataResult<Rental> GetById(int rentalId)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == rentalId), Messages.GetRentalByRentalId);
-
         }
 
-        [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
+        }
+
+        public IResult CheckCarStatus(Rental rental)
+        {
+            if (_rentalDal.CheckCarStatus(rental.CarId, rental.RentDate, rental.ReturnDate))
+            {
+                return new SuccessResult(Messages.RentalDateOk);
+            }
+            return new ErrorResult(Messages.RentalReturnDateError);
         }
     }
 }

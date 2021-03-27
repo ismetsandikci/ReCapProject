@@ -16,5 +16,10 @@ namespace Entities.DTOs
         public string CustomerName { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime? ReturnDate { get; set; }
+        public string CardNameSurname { get; set; }
+        public string CardNumber { get; set; }
+        public string CardExpiryDate { get; set; }
+        public string CardCvv { get; set; }
+        public int AmountPaye { get; set; }
     }
 }

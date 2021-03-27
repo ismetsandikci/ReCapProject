@@ -38,7 +38,8 @@ namespace Business.Constants
         public static string RentalAdded = "Rental Added";
         public static string RentalUpdated = "Rental Updated";
         public static string RentalDeleted = "Rental Deleted";
-        public static string RentalReturnDateError = "The car cannot be rented because it is not returned";
+        public static string RentalReturnDateError = "The car cannot be rented on the requested dates.";
+        public static string RentalDateOk = "The car can be delivered on the requested dates.";
         public static string RentalGetAll = "RentalGetAll"; 
         public static string GetRentalByRentalId = "GetRentalByRentalId";
 
@@ -56,5 +57,8 @@ namespace Business.Constants
         public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
         public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
 
+        public static string PaymentAdded = "Ödeme Yapıldı";
+        public static string PaymentGetAll = "Ödemeler Listelendi";
+        public static string GetPaymentByPaymentId = "Id Bilgisi Listelendi";
     }
 }
