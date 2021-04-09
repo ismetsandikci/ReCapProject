@@ -28,6 +28,7 @@ ReCapProject, SOLID prensiplerine bağlı kalınarak ve N-Katmalı mimari yapıs
 - Repository Design Pattern
 - Cross Cutting Concerns
     - Caching
+    - Logging
     - Validation
 - Extensions
     - Claim
