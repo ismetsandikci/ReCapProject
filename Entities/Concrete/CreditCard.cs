@@ -5,14 +5,15 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Payment : IEntity
+    public class CreditCard : IEntity
     {
-        public int PaymentId { get; set; }
+        public int CreditCardId { get; set; }
+        public int CustomerId { get; set; }
         public string CardNameSurname { get; set; }
         public string CardNumber { get; set; }
-        public string CardExpiryDate { get; set; }
+        public string CardExpiryDateMonth { get; set; }
+        public string CardExpiryDateYear { get; set; }
         public string CardCvv { get; set; }
-        public int AmountPaye { get; set; }
 
     }
 }

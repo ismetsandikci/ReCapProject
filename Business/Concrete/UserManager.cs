@@ -31,6 +31,7 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
 
+        [CacheRemoveAspect("IUserService.Get")]
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
@@ -38,12 +39,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserAdded);
         }
 
+        [CacheRemoveAspect("IUserService.Get")]
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
             return new SuccessResult(Messages.UserDeleted);
         }
 
+        [CacheRemoveAspect("IUserService.Get")]
         [ValidationAspect(typeof(UserValidator))]
         public IResult Update(User user)
         {

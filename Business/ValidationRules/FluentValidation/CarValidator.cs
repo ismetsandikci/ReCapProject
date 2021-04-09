@@ -20,6 +20,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.DailyPrice).GreaterThan(0).WithMessage("DailyPrice Değeri 0'dan Büyük Olmalı.");
             RuleFor(c => c.Description).NotEmpty().WithMessage("Description Değeri Boş Olamaz.");
             RuleFor(c => c.Description).MinimumLength(3).WithMessage("Description Değeri 3 Karakterden Büyük Olmalı.");
+            RuleFor(c => c.MinFindeksScore).ExclusiveBetween(0, 1901).WithMessage("MinFindeksScore Değeri 0-1900 Aralığında Olmalı.");
         }
     }
 }

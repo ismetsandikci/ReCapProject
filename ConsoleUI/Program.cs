@@ -46,11 +46,12 @@ namespace ConsoleUI
                 }
             }
 
+            /*
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             Console.WriteLine("isRented1: " + rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 2, 20), ReturnDate = new DateTime(2021, 2, 25) }).Message);
             Console.WriteLine("isRented2: " + rentalManager.Add(new Rental { CarId = 2, CustomerId = 2, RentDate = new DateTime(2021, 2, 21) }).Message);
             Console.WriteLine("isRented3: " + rentalManager.Add(new Rental { CarId = 2, CustomerId = 3, RentDate = new DateTime(2021, 2, 22) }).Message);
-
+            */
         }
 
         private static void CarColorBrandExamples()

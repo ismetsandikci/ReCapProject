@@ -13,13 +13,14 @@ namespace Entities.DTOs
         public int ModelYear { get; set; }
         public decimal DailyPrice { get; set; }
         public string UserName { get; set; }
-        public string CustomerName { get; set; }
+        public string CompanyName { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime? ReturnDate { get; set; }
+        public int AmountPaye { get; set; }
         public string CardNameSurname { get; set; }
         public string CardNumber { get; set; }
-        public string CardExpiryDate { get; set; }
+        public string CardExpiryDateMonth { get; set; }
+        public string CardExpiryDateYear { get; set; }
         public string CardCvv { get; set; }
-        public int AmountPaye { get; set; }
     }
 }

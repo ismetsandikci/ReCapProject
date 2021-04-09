@@ -53,6 +53,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getrentaldetailsbyid")]
+        public IActionResult GetRentalDetailsById(int rentalId)
+        {
+            var result = _rentalService.GetRentalDetailsById(rentalId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Rental rental)
         {
@@ -94,6 +105,15 @@ namespace WebAPI.Controllers
             {
                 return Ok(result);
             }
+            return BadRequest(result);
+        }
+
+        [HttpPost("checkfindeksscoresufficiency")]
+        public IActionResult CheckFindeksScoreSufficiency(Rental rental)
+        {
+            var result = _rentalService.CheckFindeksScoreSufficiency(rental);
+            if (result.Success) return Ok(result);
+
             return BadRequest(result);
         }
     }

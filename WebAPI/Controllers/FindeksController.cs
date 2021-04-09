@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class FindeksController : ControllerBase
     {
-        ICustomerService _customerService;
+        IFindeksService _findeksService;
 
-        public CustomersController(ICustomerService customerService)
+        public FindeksController(IFindeksService findeksService)
         {
-            _customerService = customerService;
+            _findeksService = findeksService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _customerService.GetAll();
+            var result = _findeksService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int customerId)
+        public IActionResult GetById(int id)
         {
-            var result = _customerService.GetById(customerId);
+            var result = _findeksService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -42,21 +42,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyuserid")]
-        public IActionResult GetByUserId(int userId)
+        [HttpGet("getbycustomerid")]
+        public IActionResult GetByCustomerId(int customerId)
         {
-            var result = _customerService.GetByUserId(userId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getcustomerdetails")]
-        public IActionResult GetCustomerDetails()
-        {
-            var result = _customerService.GetCustomerDetails();
+            var result = _findeksService.GetByCustomerId(customerId);
             if (result.Success)
             {
                 return Ok(result);
@@ -65,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Customer customer)
+        public IActionResult Add(Findeks findeks)
         {
-            var result = _customerService.Add(customer);
+            var result = _findeksService.Add(findeks);
             if (result.Success)
             {
                 return Ok(result);
@@ -76,9 +65,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Customer customer)
+        public IActionResult Update(Findeks findeks)
         {
-            var result = _customerService.Update(customer);
+            var result = _findeksService.Update(findeks);
             if (result.Success)
             {
                 return Ok(result);
@@ -87,9 +76,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Customer customer)
+        public IActionResult Delete(Findeks findeks)
         {
-            var result = _customerService.Delete(customer);
+            var result = _findeksService.Delete(findeks);
             if (result.Success)
             {
                 return Ok(result);

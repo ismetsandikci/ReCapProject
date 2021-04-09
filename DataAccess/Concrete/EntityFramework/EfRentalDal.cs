@@ -5,6 +5,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
@@ -28,26 +29,21 @@ namespace DataAccess.Concrete.EntityFramework
                 {
                     return true;
                 }
-                
                 return false;
             }
         }
 
-        public List<RentalDetailDto> GetRentalDetails()
+        public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
-                var result = from ra in context.Rentals
-                             join c in context.Cars
-                             on ra.CarId equals c.CarId
-                             join co in context.Customers
-                             on ra.CustomerId equals co.CustomerId
-                             join u in context.Users
-                             on co.UserId equals u.UserId
-                             join b in context.Brands
-                             on c.BrandId equals b.BrandId
-                             join p in context.Payments
-                             on ra.PaymentId equals p.PaymentId
+                var result = from ra in filter == null ? context.Rentals : context.Rentals.Where(filter)
+                             join c in context.Cars on ra.CarId equals c.CarId
+                             join co in context.Customers on ra.CustomerId equals co.CustomerId
+                             join u in context.Users on co.UserId equals u.UserId
+                             join b in context.Brands on c.BrandId equals b.BrandId
+                             join cc in context.CreditCards on ra.CreditCardId equals cc.CreditCardId
+                             into CreditCardId from cc in CreditCardId.DefaultIfEmpty()
                              select new RentalDetailDto
                              {
                                  RentalId = ra.RentalId,
@@ -56,15 +52,15 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
                                  UserName = u.FirstName + " " + u.LastName,
-                                 CustomerName = co.CompanyName,
+                                 CompanyName = co.CompanyName,
                                  RentDate = ra.RentDate,
                                  ReturnDate = ra.ReturnDate,
-                                 CardNameSurname = p.CardNameSurname,
-                                 CardNumber = p.CardNumber,
-                                 CardExpiryDate = p.CardExpiryDate,
-                                 CardCvv = p.CardCvv,
-                                 AmountPaye = p.AmountPaye
-                                 
+                                 AmountPaye = ra.AmountPaye,
+                                 CardNameSurname = cc.CardNameSurname,
+                                 CardNumber = cc.CardNumber,
+                                 CardExpiryDateMonth = cc.CardExpiryDateMonth,
+                                 CardExpiryDateYear = cc.CardExpiryDateYear,
+                                 CardCvv = cc.CardCvv
                              };
                 return result.ToList();
             }

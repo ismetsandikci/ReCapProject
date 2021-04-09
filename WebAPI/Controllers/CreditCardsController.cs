@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class CreditCardsController : ControllerBase
     {
-        ICustomerService _customerService;
+        ICreditCardService _creditCardService;
 
-        public CustomersController(ICustomerService customerService)
+        public CreditCardsController(ICreditCardService creditCardService)
         {
-            _customerService = customerService;
+            _creditCardService = creditCardService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _customerService.GetAll();
+            var result = _creditCardService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int customerId)
+        public IActionResult GetById(int creditCardId)
         {
-            var result = _customerService.GetById(customerId);
+            var result = _creditCardService.GetById(creditCardId);
             if (result.Success)
             {
                 return Ok(result);
@@ -42,10 +42,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyuserid")]
-        public IActionResult GetByUserId(int userId)
+        [HttpGet("getbycustomerid")]
+        public IActionResult GetByCustomerId(int customerId)
         {
-            var result = _customerService.GetByUserId(userId);
+            var result = _creditCardService.GetByCustomerId(customerId);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,10 +53,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getcustomerdetails")]
-        public IActionResult GetCustomerDetails()
+        [HttpGet("creditcardexists")]
+        public IActionResult CreditCardExists(string cardNumber)
         {
-            var result = _customerService.GetCustomerDetails();
+            var result = _creditCardService.CreditCardExists(cardNumber);
             if (result.Success)
             {
                 return Ok(result);
@@ -65,9 +65,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Customer customer)
+        public IActionResult Add(CreditCard creditCard)
         {
-            var result = _customerService.Add(customer);
+            var creditCardExists = _creditCardService.CreditCardExists(creditCard.CardNumber);
+            if (creditCardExists.Success)
+            {
+                return BadRequest(creditCardExists.Message);
+            }
+
+            var result = _creditCardService.Add(creditCard);
             if (result.Success)
             {
                 return Ok(result);
@@ -76,9 +82,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Customer customer)
+        public IActionResult Update(CreditCard creditCard)
         {
-            var result = _customerService.Update(customer);
+            var creditCardExists = _creditCardService.CreditCardExists(creditCard.CardNumber);
+            if (creditCardExists.Success)
+            {
+                return BadRequest(creditCardExists.Message);
+            }
+
+            var result = _creditCardService.Update(creditCard);
             if (result.Success)
             {
                 return Ok(result);
@@ -87,9 +99,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Customer customer)
+        public IActionResult Delete(CreditCard creditCard)
         {
-            var result = _customerService.Delete(customer);
+            var result = _creditCardService.Delete(creditCard);
             if (result.Success)
             {
                 return Ok(result);

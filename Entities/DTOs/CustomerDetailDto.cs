@@ -13,6 +13,7 @@ namespace Entities.DTOs
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
         public string CompanyName { get; set; }
+        public bool Status { get; set; }
 
     }
 }

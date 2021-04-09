@@ -33,7 +33,8 @@ namespace Business.Constants
         public static string CustomerDeleted = "Customer Deleted";
         public static string CustomerNotValid = "Company Name Not Valid";
         public static string CustomersGetAll = "CustomersGetAll";
-
+        public static string GetCustomerById = "GetCustomerById";
+        public static string GetCustomerByUserId = "GetCustomerByUserId";
 
         public static string RentalAdded = "Rental Added";
         public static string RentalUpdated = "Rental Updated";
@@ -57,8 +58,21 @@ namespace Business.Constants
         public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
         public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
 
-        public static string PaymentAdded = "Ödeme Yapıldı";
-        public static string PaymentGetAll = "Ödemeler Listelendi";
-        public static string GetPaymentByPaymentId = "Id Bilgisi Listelendi";
+        public static string CreditCardAdded = "Kredi Kartı Eklendi";
+        public static string CreditCardUpdated = "Kredi Kartı Güncellendi";
+        public static string CreditCardDeleted = "Kredi Kartı Silindi";
+        public static string CreditCardGetAll = "Kredi Kartları Listelendi";
+        public static string GetCreditCardById = "Id Bilgisine Göre Kart Listelendi";
+        public static string CreditCardAlreadyExists = "Bu kredi kartı numarası zaten mevcut";
+
+        public static string FindeksNotFound = "Findeks puanınızı arttırmanız gerekmektedir.";
+        public static string FindeksNotEnoughForCar = "Findeks puanınız araba için yeterli değil.";
+        public static string FindeksIsSufficientForCar = "Findeks puanınız araba için yeterli.";
+        public static string FindeksGetByCustomerId = "Müşteriye ait Findeks puanı listelendi.";
+        public static string FindeksAdded = "Findeks puanını eklendi.";
+        public static string FindeksUpdated = "Findeks puanını güncellendi.";
+        public static string FindeksDeleted = "Findeks puanını silindi.";
+
+        public static string PaymentSuccessful = "Ödeme Başarılı";
     }
 }

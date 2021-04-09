@@ -29,7 +29,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("ICarService.Get")]
-        //[SecuredOperation("car.modify,admin")]
+        [SecuredOperation("car.modify,admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -38,7 +38,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("ICarService.Get")]
-        //[SecuredOperation("car.modify,admin")]
+        [SecuredOperation("car.modify,admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
@@ -47,7 +47,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("ICarService.Get")]
-        //[SecuredOperation("car.modify,admin")]
+        [SecuredOperation("car.modify,admin")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);

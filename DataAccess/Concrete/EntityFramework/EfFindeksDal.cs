@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfPaymentDal : EfEntityRepositoryBase<Payment, ReCapProjectContext>, IPaymentDal
+    public class EfFindeksDal : EfEntityRepositoryBase<Findeks, ReCapProjectContext>, IFindeksDal
     {
     }
 }

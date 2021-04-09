@@ -27,7 +27,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelName = c.ModelName, 
                                  ModelYear = c.ModelYear, 
                                  DailyPrice = c.DailyPrice, 
-                                 Description = c.Description
+                                 Description = c.Description,
+                                 MinFindeksScore = c.MinFindeksScore
                              };
                 return result.ToList();
 
