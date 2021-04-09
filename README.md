@@ -48,6 +48,7 @@ ReCapProject, SOLID prensiplerine bağlı kalınarak ve N-Katmalı mimari yapıs
 - **Web API**: Frontend kısmının ve diğer platformların program ile haberleşmesini ve işlem yapmasını sağlayan servislerin yazıldığı kısımdır.
 
 ## Veritabanı ve Tablolar
+<td>&#128206;<ins><b>Veritabanı dosyalarına <a href="https://github.com/ismetsandikci/ReCapProject/tree/master/_databaseBackup">buradan</a> ulaşabilirsiniz.</ins>
 ![alt text](https://github.com/ismetsandikci/ReCapProject/blob/master/_databaseBackup/Database%20Diagram.jpg)
 
 <br>
